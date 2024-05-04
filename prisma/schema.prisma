@@ -1,0 +1,31 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id String @id @default(uuid()) // universally unique identifier
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relationships
+  journalEntries JournalEntry[]
+
+  clerkId String @unique
+  email String @unique
+}
+
+model JournalEntry {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relationships
+  userId String
+  user User @relation(fields: [userId], references: [id])
+
+  content String @db.Text // full-blown database text, not just a varchar
+
+  @@index([userId]) // to create indices
+}
