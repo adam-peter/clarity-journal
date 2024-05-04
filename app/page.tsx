@@ -3,7 +3,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-black text-white">
+    <div className="flex h-screen w-screen items-center justify-center bg-black p-2 text-white">
       <div className="mx-auto w-full max-w-[600px]">
         <h1 className="mb-4 text-6xl">The Best Journal app, period.</h1>
         <p className="mb-4 text-2xl text-white/60">
