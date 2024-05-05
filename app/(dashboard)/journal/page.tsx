@@ -5,7 +5,7 @@ const Journal = () => {
   return (
     <div>
       This is the journal page!
-      <h1>Hello!</h1>
+      <h1>Hello!</h1> 
       <SignOutButton />
     </div>
   );
