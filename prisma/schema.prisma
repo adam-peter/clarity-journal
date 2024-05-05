@@ -5,27 +5,42 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid()) // universally unique identifier
+  id        String   @id @default(uuid()) // universally unique identifier
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  clerkId String @unique
+  email   String @unique
 
   // relationships
   journalEntries JournalEntry[]
-
-  clerkId String @unique
-  email String @unique
 }
 
 model JournalEntry {
-  id String @id @default(uuid())
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // relationships
-  userId String
-  user User @relation(fields: [userId], references: [id])
-
   content String @db.Text // full-blown database text, not just a varchar
 
+  // relationships
+  userId   String
+  user     User      @relation(fields: [userId], references: [id])
+  analysis Analysis?
+
   @@index([userId]) // to create indices
+}
+
+model Analysis {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  mood     String
+  summary  String  @db.Text
+  color    String
+  negative Boolean
+
+  journalEntryId String       @unique // can specify even down, with @@unique([...])
+  journalEntry   JournalEntry @relation(fields: [journalEntryId], references: [id])
 }
