@@ -1,7 +1,11 @@
+import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import React from "react";
 
-const Home = () => {
+const Home = async () => {
+  const { userId } = await auth();
+  const startHref = userId ? "/journal" : "/new-user";
+
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-black p-2 text-white">
       <div className="mx-auto w-full max-w-[600px]">
@@ -11,7 +15,7 @@ const Home = () => {
           You have to do is be honest.
         </p>
         <div>
-          <Link href="/journal">
+          <Link href={startHref}>
             <button className="rounded-lg bg-blue-600 px-4 py-2 text-xl">
               Get Started
             </button>
