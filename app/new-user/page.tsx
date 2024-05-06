@@ -11,7 +11,6 @@ const NewUser = async () => {
 
 const createNewUser = async () => {
   const user = await currentUser();
-  console.log(user);
 
   const existingUser = await prisma.user.findUnique({
     where: {
