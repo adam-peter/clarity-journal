@@ -6,18 +6,26 @@ import React from "react";
 const EntryPage = async ({ params }: { params: { id: string } }) => {
   const entry = await getEntry(params.id);
 
+  const {
+    mood = "",
+    summary = "",
+    subject = "",
+    color = "#ffffff",
+    negative = false,
+  } = entry?.analysis!;
+
   const analysisData = [
-    { name: "Summary", value: "" },
-    { name: "Subject", value: "" },
-    { name: "Mood", value: "" },
-    { name: "Negative", value: "False" },
+    { name: "Summary", value: summary },
+    { name: "Subject", value: subject },
+    { name: "Mood", value: mood },
+    { name: "Negative", value: negative ? "True" : "False" },
   ];
 
   return (
     <div className="grid h-full w-full grid-cols-3 p-10">
       <div className="col-span-2">{<Editor entry={entry!} />}</div>
       <div className="border-l border-black/10">
-        <div className="bg-blue-300 px-6 py-10">
+        <div className="px-6 py-10" style={{ backgroundColor: color }}>
           <h2 className="text-2xl">Analysis</h2>
         </div>
         <ul>
@@ -45,6 +53,9 @@ const getEntry = async (id: string) => {
         id,
         userId: user.id,
       },
+    },
+    include: {
+      analysis: true,
     },
   });
   return entry;
