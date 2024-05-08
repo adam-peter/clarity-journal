@@ -7,7 +7,7 @@ import Link from "next/link";
 import Question from "@/components/Question";
 
 const Journal = async () => {
-  const entries = await getEntries();
+  const entries = await getEntriesWithAnalysies();
 
   return (
     <div className="h-full bg-zinc-400/10 p-10">
@@ -29,7 +29,7 @@ const Journal = async () => {
   );
 };
 
-const getEntries = async () => {
+const getEntriesWithAnalysies = async () => {
   const user = await getUserByClerkId();
   const entries = await prisma.journalEntry.findMany({
     where: {
@@ -37,6 +37,9 @@ const getEntries = async () => {
     },
     orderBy: {
       createdAt: "desc",
+    },
+    include: {
+      analysis: true,
     },
   });
 

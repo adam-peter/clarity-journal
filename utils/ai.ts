@@ -2,7 +2,6 @@ import { OpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import { StructuredOutputParser } from "langchain/output_parsers";
 import z from "zod";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { JournalEntry } from "@prisma/client";
 import { Document } from "langchain/document";
 import { loadQARefineChain } from "langchain/chains";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
