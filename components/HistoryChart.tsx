@@ -6,7 +6,12 @@ import CustomToolTip from "./CustomToolTip";
 const HistoryChart = ({
   data,
 }: {
-  data: { sentimentScore: number; createdAt: Date, mood: string, color: string }[];
+  data: {
+    sentimentScore: number;
+    createdAt: Date;
+    mood: string;
+    color: string;
+  }[];
 }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -18,7 +23,10 @@ const HistoryChart = ({
           strokeWidth={2}
           activeDot={{ r: 8 }}
         />
-        <XAxis dataKey="createdAt" />
+        <XAxis
+          dataKey="createdAt"
+          tickFormatter={(tick) => new Date(tick).toLocaleDateString()}
+        />
         {/*@ts-ignore*/}
         <Tooltip content={<CustomToolTip />} />
       </LineChart>
