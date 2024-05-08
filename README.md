@@ -2,6 +2,8 @@
 
 Discover clarity within your thoughts and emotions. Clarity Journal is a personal AI-powered journaling app that helps you track your moods, gain insights, and visualize your mental health journey.
 
+**Try out Clarity Journal for yourself [here](https://clarity-journal.vercel.app/)!**
+
 ## Features 💎
 
 * **Secure and Private Auth:** Sign in seamlessly with Google, GitHub, or email using Clerk for reliable authentication.
@@ -29,3 +31,4 @@ Discover clarity within your thoughts and emotions. Clarity Journal is a persona
 * **Supabase:** Open-source Firebase alternative, providing a hosted PostgreSQL database.
 * **OpenAI API:** AI-powered text analysis and query capabilities.
 
+**Try out Clarity Journal for yourself [here](https://clarity-journal.vercel.app/)!**
