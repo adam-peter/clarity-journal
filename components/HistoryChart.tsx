@@ -6,7 +6,7 @@ import CustomToolTip from "./CustomToolTip";
 const HistoryChart = ({
   data,
 }: {
-  data: { sentimentScore: number; createdAt: Date, mood: string }[];
+  data: { sentimentScore: number; createdAt: Date, mood: string, color: string }[];
 }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
