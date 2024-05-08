@@ -33,6 +33,7 @@ type Props = { children: React.ReactNode };
 const links = [
   { href: "/", label: "Home" },
   { href: "/journal", label: "Journal" },
+  { href: "/history", label: "History" },
 ];
 
 export default DashboardLayout;

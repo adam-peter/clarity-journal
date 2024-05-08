@@ -9,6 +9,7 @@ import { MemoryVectorStore } from "langchain/vectorstores/memory";
 
 // generating structured output from openai promt
 const schema = z.object({
+  sentimentScore: z.number().describe("Sentiment of the text and rated on a scale from -10 to 10, where -10 is extremely negative, 0 is neutral, and 10 is extremely positive."),
   mood: z
     .string()
     .describe("The mood of the person who wrote the journal entry."),
@@ -60,7 +61,10 @@ export const analyze = async (content: string) => {
   }
 };
 
-const qa = async (question: string, entries: JournalEntry[]) => {
+export const qa = async (
+  question: string,
+  entries: { id: string; createdAt: Date; content: string }[],
+) => {
   const docs = entries.map(
     (entry) =>
       new Document({
@@ -83,5 +87,7 @@ const qa = async (question: string, entries: JournalEntry[]) => {
     question,
   });
 
-  return res.output_text();
+  console.log(res);
+
+  return res.output_text;
 };

@@ -10,6 +10,10 @@ export const createNewEntry = async () => {
   }
 };
 
+const createURL = (path: string) => {
+  return `${window.location.origin}${path}`;
+};
+
 export const updateEntry = async (id: string, content: string) => {
   const res = await fetch(new Request(createURL(`/api/journal/${id}`)), {
     method: "PATCH",
@@ -22,6 +26,16 @@ export const updateEntry = async (id: string, content: string) => {
   }
 };
 
-const createURL = (path: string) => {
-  return `${window.location.origin}${path}`;
+export const askQuestion = async (question: string) => {
+  const res = await fetch(
+    new Request(createURL("/api/question"), {
+      method: "POST",
+      body: JSON.stringify({ question }),
+    }),
+  );
+
+  if (res.ok) {
+    const data = await res.json();
+    return data.data;
+  }
 };
