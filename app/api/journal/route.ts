@@ -17,6 +17,7 @@ export const POST = async () => {
   await prisma.analysis.create({
     // @ts-ignore
     data: {
+      userId: user.id,
       journalEntryId: entry.id,
       ...analysis
     }

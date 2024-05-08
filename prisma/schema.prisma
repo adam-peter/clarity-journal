@@ -18,6 +18,7 @@ model User {
 
   // relationships
   journalEntries JournalEntry[]
+  analysies Analysis[]
 }
 
 model JournalEntry {
@@ -49,4 +50,9 @@ model Analysis {
 
   journalEntryId String       @unique // can specify even down, with @@unique([...])
   journalEntry   JournalEntry @relation(fields: [journalEntryId], references: [id])
+
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
