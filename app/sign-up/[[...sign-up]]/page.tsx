@@ -2,7 +2,11 @@ import React from "react";
 import { SignUp } from "@clerk/nextjs";
 
 const SignUpPage = () => {
-  return <SignUp path="/sign-up" />;
+  return (
+    <div className="flex h-screen w-screen items-center justify-center bg-background">
+      <SignUp path="/sign-up" />
+    </div>
+  );
 };
 
 export default SignUpPage;

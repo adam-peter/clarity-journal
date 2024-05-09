@@ -10,7 +10,7 @@ const Journal = async () => {
   const entries = await getEntriesWithAnalysies();
 
   return (
-    <div className="h-full bg-zinc-400/10 p-10">
+    <div className="h-full p-10">
       <h2 className="mb-8 text-3xl">Journal Entries</h2>
 
       <div className="my-8">
