@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import React from "react";
@@ -9,16 +10,21 @@ const Home = async () => {
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-black p-2 text-white">
       <div className="mx-auto w-full max-w-[600px]">
-        <h1 className="mb-4 text-6xl">The Best Journal app, period.</h1>
+        <h1 className="mb-4 text-center text-6xl">Clarity Journal</h1>
         <p className="mb-4 text-2xl text-white/60">
-          This is the best app for tracking your mood through out your life. All
-          You have to do is be honest.
+          In the modern day, we&apos;re getting more and more lost in our
+          thoughts. They are always moving to fast. We get overwhelmed by them.
+          But most importantly, we don&apos;t understand them.
         </p>
-        <div>
+        <p className="mb-6 text-2xl text-white/60">
+          Clarity is here to help you organize, understand and monitor your
+          thoughts better.
+        </p>
+        <div className="flex justify-center">
           <Link href={startHref}>
-            <button className="rounded-lg bg-blue-600 px-4 py-2 text-xl">
+            <Button size="lg">
               Get Started
-            </button>
+            </Button>
           </Link>
         </div>
       </div>

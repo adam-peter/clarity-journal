@@ -1,6 +1,7 @@
 "use client";
 import { askQuestion } from "@/utils/api";
 import React, { FormEvent, useState } from "react";
+import { Button } from "./ui/button";
 
 const Question = () => {
   const [question, setQuestion] = useState("");
@@ -27,13 +28,13 @@ const Question = () => {
           onChange={(e) => setQuestion(e.target.value)}
           className="rounded-lg rounded-r-none border border-r-0 border-b-black/20 px-4 py-2 text-lg"
         />
-        <button
+        <Button
           type="submit"
           disabled={loading}
           className="rounded-lg rounded-l-none border border-l-0 border-b-black/20 bg-blue-400 px-4 py-2 text-lg"
         >
           Ask
-        </button>
+        </Button>
       </form>
       {loading && <div>...loading</div>}
       {response && <div>{response}</div>}
