@@ -7,9 +7,11 @@ const DashboardLayout = ({ children }: Props) => {
   return (
     <div className="relative h-screen w-screen">
       <aside className="absolute left-0 top-0 flex h-full w-48 flex-col gap-2 border-r border-primary/50 p-3">
-        <div className="text-center text-3xl">Clarity</div>
+        <Button className="text-center text-4xl" variant="link" size="lg">
+          <Link href="/">Clarity</Link>
+        </Button>
         {links.map((link) => (
-          <Button key={link.label} variant="link" size="lg">
+          <Button key={link.label} variant="link" size="lg" className="text-2xl font-extralight">
             <Link href={link.href}>{link.label}</Link>
           </Button>
         ))}
@@ -30,7 +32,6 @@ const DashboardLayout = ({ children }: Props) => {
 type Props = { children: React.ReactNode };
 
 const links = [
-  { href: "/", label: "Home" },
   { href: "/journal", label: "Journal" },
   { href: "/history", label: "History" },
 ];

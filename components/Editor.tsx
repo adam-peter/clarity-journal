@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useAutosave } from "react-autosave";
 import { updateEntry } from "@/utils/api";
+import { Textarea } from "./ui/textarea";
 
 const Editor = ({ entry }: { entry: any }) => {
   const [value, setValue] = useState(entry.content);
@@ -38,11 +39,11 @@ const Editor = ({ entry }: { entry: any }) => {
     <div className="grid h-full w-full grid-cols-3 p-10">
       <div className="col-span-2">
         {isLoading && <div>...loading</div>}
-        <textarea
+        <Textarea
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className="h-full w-full p-4 text-xl outline-none"
-        ></textarea>
+          className="h-full w-full p-4 text-xl focus-visible:ring-0 overflow-y-auto"
+        ></Textarea>
       </div>
 
       <div className="border-l border-black/10">
