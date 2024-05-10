@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAutosave } from "react-autosave";
 import { updateEntry } from "@/utils/api";
 import { Textarea } from "./ui/textarea";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Editor = ({ entry }: { entry: any }) => {
   const [value, setValue] = useState(entry.content);
@@ -36,31 +37,33 @@ const Editor = ({ entry }: { entry: any }) => {
   });
 
   return (
-    <div className="grid h-full w-full grid-cols-3 p-10">
-      <div className="col-span-2">
-        {isLoading && <div>...loading</div>}
-        <Textarea
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          className="h-full w-full p-4 text-xl focus-visible:ring-0 overflow-y-auto"
-        ></Textarea>
-      </div>
-
-      <div className="border-l border-black/10">
-        <div className="px-6 py-10" style={{ backgroundColor: color }}>
-          <h2 className="text-2xl">Analysis</h2>
+    <div className="relative h-full w-full">
+      {isLoading && <LoadingSpinner className="absolute right-12 bottom-12" />}
+      <div className="grid h-full w-full grid-cols-3 p-10">
+        <div className="col-span-2">
+          <Textarea
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            className="h-full w-full overflow-y-auto p-4 text-xl focus-visible:ring-0"
+          ></Textarea>
         </div>
-        <ul>
-          {analysisData.map((item) => (
-            <li
-              key={item.name}
-              className="flex items-center justify-between border-y border-black/10 px-2 py-4"
-            >
-              <span className="text-lg font-semibold">{item.name}</span>
-              <span>{item.value}</span>
-            </li>
-          ))}
-        </ul>
+
+        <div className="border-l border-black/10">
+          <div className="px-6 py-10" style={{ backgroundColor: color }}>
+            <h2 className="text-2xl">Analysis</h2>
+          </div>
+          <ul>
+            {analysisData.map((item) => (
+              <li
+                key={item.name}
+                className="flex items-center justify-between border-y border-black/10 px-2 py-4"
+              >
+                <span className="text-lg font-semibold">{item.name}</span>
+                <span>{item.value}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
