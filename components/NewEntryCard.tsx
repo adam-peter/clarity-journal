@@ -3,6 +3,7 @@
 import React from "react";
 import { createNewEntry } from "@/utils/api";
 import { useRouter } from "next/navigation";
+import { Card } from "./ui/card";
 
 const NewEntryCard = () => {
   const router = useRouter();
@@ -12,14 +13,12 @@ const NewEntryCard = () => {
   };
 
   return (
-    <div
-      className="cursor-pointer overflow-hidden rounded-lg bg-white shadow"
+    <Card
       onClick={onClick}
+      className="cursor-pointer px-4 py-5 text-3xl sm:p-6"
     >
-      <div className="px-4 py-5 sm:p-6">
-        <span className="text-3xl">New Entry</span>
-      </div>
-    </div>
+      New Entry
+    </Card>
   );
 };
 

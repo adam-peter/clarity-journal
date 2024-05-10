@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
@@ -5,15 +6,13 @@ import React from "react";
 const DashboardLayout = ({ children }: Props) => {
   return (
     <div className="relative h-screen w-screen">
-      <aside className="absolute left-0 top-0 h-full w-48 border-r border-primary/50">
-        <div>Clarity Journal</div>
-        <ul>
-          {links.map((link) => (
-            <li key={link.label} className="px-2 py-6 text-xl">
-              <Link href={link.href}>{link.label}</Link>
-            </li>
-          ))}
-        </ul>
+      <aside className="absolute left-0 top-0 flex h-full w-48 flex-col gap-2 border-r border-primary/50 p-3">
+        <div className="text-center text-3xl">Clarity</div>
+        {links.map((link) => (
+          <Button key={link.label} variant="link" size="lg">
+            <Link href={link.href}>{link.label}</Link>
+          </Button>
+        ))}
       </aside>
       <div className="ml-48 h-full">
         <header className="h-14 border-b border-primary/50">
