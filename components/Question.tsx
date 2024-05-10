@@ -35,7 +35,7 @@ const Question = () => {
       <form onSubmit={onSubmit}>
         <Drawer>
           <DrawerTrigger asChild>
-            <Button>Ask Question</Button>
+            <Button className="text-foreground">Ask Question</Button>
           </DrawerTrigger>
           <DrawerContent>
             <div className="flex h-[70vh] flex-col items-center gap-4 py-10">
@@ -65,7 +65,11 @@ const Question = () => {
                   }}
                   className=""
                 />
-                <Button type="submit" disabled={loading}>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="text-foreground"
+                >
                   Submit
                 </Button>
               </div>

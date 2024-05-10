@@ -7,7 +7,11 @@ const DashboardLayout = ({ children }: Props) => {
   return (
     <div className="relative h-screen w-screen">
       <aside className="absolute left-0 top-0 flex h-full w-48 flex-col gap-2 p-3">
-        <Button className="text-center text-4xl" variant="link" size="lg">
+        <Button
+          className="text-center text-4xl text-foreground"
+          variant="link"
+          size="lg"
+        >
           <Link href="/">Clarity</Link>
         </Button>
         {links.map((link) => (
@@ -15,15 +19,15 @@ const DashboardLayout = ({ children }: Props) => {
             key={link.label}
             variant="link"
             size="lg"
-            className="text-2xl font-extralight"
+            className="text-2xl font-extralight text-foreground"
           >
             <Link href={link.href}>{link.label}</Link>
           </Button>
         ))}
       </aside>
-      <div className="ml-48 h-full flex flex-col ">
-        <header className="h-14">
-          <div className="flex h-full w-full items-center justify-end px-6">
+      <div className="ml-48 flex h-full flex-col ">
+        <header className="h-max">
+          <div className="flex h-full w-full items-center justify-end px-6 py-5">
             <UserButton />
           </div>
         </header>

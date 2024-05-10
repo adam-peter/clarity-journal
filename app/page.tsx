@@ -22,7 +22,7 @@ const Home = async () => {
         </p>
         <div className="flex justify-center">
           <Link href={startHref}>
-            <Button size="lg">
+            <Button size="lg" className="text-foreground">
               Get Started
             </Button>
           </Link>
