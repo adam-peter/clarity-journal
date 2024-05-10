@@ -15,6 +15,7 @@
     "@langchain/openai": "^0.0.28",
     "@prisma/client": "^5.13.0",
     "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "^2.43.1",
