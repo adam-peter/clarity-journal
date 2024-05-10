@@ -1,6 +1,13 @@
 "use client";
 import React from "react";
-import { ResponsiveContainer, Line, Tooltip, XAxis, LineChart } from "recharts";
+import {
+  ResponsiveContainer,
+  Line,
+  Tooltip,
+  XAxis,
+  LineChart,
+  YAxis,
+} from "recharts";
 import CustomToolTip from "./CustomToolTip";
 
 const HistoryChart = ({
@@ -27,6 +34,7 @@ const HistoryChart = ({
           dataKey="createdAt"
           tickFormatter={(tick) => new Date(tick).toLocaleDateString()}
         />
+        <YAxis dataKey="sentimentScore" />
         {/*@ts-ignore*/}
         <Tooltip content={<CustomToolTip />} />
       </LineChart>
