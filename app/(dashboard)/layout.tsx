@@ -6,24 +6,31 @@ import React from "react";
 const DashboardLayout = ({ children }: Props) => {
   return (
     <div className="relative h-screen w-screen">
-      <aside className="absolute left-0 top-0 flex h-full w-48 flex-col gap-2 border-r border-primary/50 p-3">
+      <aside className="absolute left-0 top-0 flex h-full w-48 flex-col gap-2 p-3">
         <Button className="text-center text-4xl" variant="link" size="lg">
           <Link href="/">Clarity</Link>
         </Button>
         {links.map((link) => (
-          <Button key={link.label} variant="link" size="lg" className="text-2xl font-extralight">
+          <Button
+            key={link.label}
+            variant="link"
+            size="lg"
+            className="text-2xl font-extralight"
+          >
             <Link href={link.href}>{link.label}</Link>
           </Button>
         ))}
       </aside>
-      <div className="ml-48 h-full">
-        <header className="h-14 border-b border-primary/50">
+      <div className="ml-48 h-full flex flex-col ">
+        <header className="h-14">
           <div className="flex h-full w-full items-center justify-end px-6">
             <UserButton />
           </div>
         </header>
         {/* substract height from the header */}
-        <div className="h-[calc(100vh-3.5rem)]">{children}</div>{" "}
+        <div className="h-full border-l border-t border-primary/50">
+          {children}
+        </div>{" "}
       </div>
     </div>
   );

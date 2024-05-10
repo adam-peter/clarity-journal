@@ -15,7 +15,7 @@ const NewEntryCard = () => {
   return (
     <Card
       onClick={onClick}
-      className="cursor-pointer px-4 py-5 text-3xl sm:p-6"
+      className="cursor-pointer px-4 py-5 text-3xl sm:p-6 flex justify-center items-center"
     >
       New Entry
     </Card>
