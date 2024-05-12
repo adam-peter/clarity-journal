@@ -4,6 +4,9 @@ import { useAutosave } from "react-autosave";
 import { updateEntry } from "@/utils/api";
 import { Textarea } from "./ui/textarea";
 import LoadingSpinner from "./LoadingSpinner";
+import { Button } from "./ui/button";
+import { Trash2 } from "lucide-react";
+import { isBrightColor } from "@/utils/utils";
 
 const Editor = ({ entry }: { entry: any }) => {
   const [value, setValue] = useState(entry.content);
@@ -38,25 +41,29 @@ const Editor = ({ entry }: { entry: any }) => {
 
   return (
     <div className="relative h-full w-full">
-      {isLoading && <LoadingSpinner className="absolute right-12 bottom-12" />}
+      {isLoading && <LoadingSpinner className="absolute bottom-12 right-12" />}
       <div className="grid h-full w-full grid-cols-3 p-10">
-        <div className="col-span-2">
+        <div className="col-span-2 border">
           <Textarea
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            className="h-full w-full overflow-y-auto p-4 text-xl focus-visible:ring-0"
+            className="h-full w-full resize-none overflow-y-auto rounded-none p-4 text-xl focus-visible:ring-0"
           ></Textarea>
         </div>
 
-        <div className="border-l border-black/10">
+        <div>
           <div className="px-6 py-10" style={{ backgroundColor: color }}>
-            <h2 className="text-2xl">Analysis</h2>
+            <h2
+              className={`text-2xl ${isBrightColor(color) ? "text-black" : "text-white"}`}
+            >
+              Analysis
+            </h2>
           </div>
           <ul>
             {analysisData.map((item) => (
               <li
                 key={item.name}
-                className="flex items-center justify-between border-y border-black/10 px-2 py-4"
+                className="flex items-center justify-between border-y border-r px-2 py-4"
               >
                 <span className="text-lg font-semibold">{item.name}</span>
                 <span>{item.value}</span>
