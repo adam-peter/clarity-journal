@@ -18,16 +18,16 @@ import LoadingSpinner from "./LoadingSpinner";
 const Question = () => {
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (
     _e: FormEvent<HTMLFormElement> | undefined = undefined,
   ) => {
-    setLoading(true);
+    setIsLoading(true);
     const answer = await askQuestion(question);
     setResponse(answer);
     setQuestion("");
-    setLoading(false);
+    setIsLoading(false);
   };
 
   return (
@@ -52,7 +52,7 @@ const Question = () => {
             <div className="flex w-1/2 gap-2">
               <Input
                 type="text"
-                disabled={loading}
+                disabled={isLoading}
                 placeholder="How was I feeling recently?"
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
@@ -65,7 +65,7 @@ const Question = () => {
                 className=""
               />
               <Button
-                disabled={loading}
+                disabled={isLoading}
                 className="text-foreground"
                 onClick={() => onSubmit()}
               >
@@ -73,7 +73,7 @@ const Question = () => {
               </Button>
             </div>
 
-            {loading ? (
+            {isLoading ? (
               <LoadingSpinner />
             ) : (
               <ScrollArea className="w-1/2 p-2">
