@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useAutosave } from "react-autosave";
-import { updateEntry } from "@/utils/api";
+import { deleteEntry, updateEntry } from "@/utils/api";
 import { Textarea } from "./ui/textarea";
 import LoadingSpinner from "./LoadingSpinner";
 import { Button } from "./ui/button";
@@ -9,6 +9,8 @@ import { Trash2 } from "lucide-react";
 import { isBrightColor } from "@/utils/utils";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { PopoverClose } from "@radix-ui/react-popover";
+import { useRouter } from "next/navigation";
+import DeletePopover from "./DeletePopover";
 
 const Editor = ({ entry }: { entry: any }) => {
   const [value, setValue] = useState(entry.content);
@@ -35,6 +37,8 @@ const Editor = ({ entry }: { entry: any }) => {
     onSave: async (newValue) => {
       setIsLoading(true);
       const updatedEntry = await updateEntry(entry.id, newValue);
+      if (!updatedEntry) return;
+
       setAnalysis(updatedEntry.analysis);
       setIsLoading(false);
     },
@@ -74,24 +78,7 @@ const Editor = ({ entry }: { entry: any }) => {
           </ul>
 
           <div className="mt-2 flex justify-center">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="ghost" size="icon" className="hover:bg-black">
-                  <Trash2 />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-60 bg-background">
-                <div className="">
-                  Are you sure you want to delete this journal entry?
-                </div>
-                <div className="mt-2 flex justify-center gap-2">
-                  <Button variant="destructive">Yes</Button>
-                  <Button asChild variant="outline">
-                    <PopoverClose>No</PopoverClose>
-                  </Button>
-                </div>
-              </PopoverContent>
-            </Popover>
+            <DeletePopover entryId={entry.id} navigate/>
           </div>
         </div>
       </div>
