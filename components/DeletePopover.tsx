@@ -33,6 +33,7 @@ const DeletePopover = ({
             onClick={async () => {
               const data = await deleteEntry(entryId);
               if (navigate && data?.deleted) {
+                router.refresh();
                 router.replace("/journal");
               }
             }}
