@@ -1,21 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import { useAutosave } from "react-autosave";
-import { deleteEntry, updateEntry } from "@/utils/api";
+import { updateEntry } from "@/utils/api";
 import { Textarea } from "./ui/textarea";
 import LoadingSpinner from "./LoadingSpinner";
-import { Button } from "./ui/button";
-import { Trash2 } from "lucide-react";
 import { isBrightColor } from "@/utils/utils";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { PopoverClose } from "@radix-ui/react-popover";
-import { useRouter } from "next/navigation";
 import DeletePopover from "./DeletePopover";
+import { useRouter } from "next/navigation";
 
 const Editor = ({ entry }: { entry: any }) => {
   const [value, setValue] = useState(entry.content);
   const [isLoading, setIsLoading] = useState(false);
   const [analysis, setAnalysis] = useState(entry.analysis);
+  const router = useRouter();
 
   const {
     mood = "",
@@ -40,6 +37,7 @@ const Editor = ({ entry }: { entry: any }) => {
       if (!updatedEntry) return;
 
       setAnalysis(updatedEntry.analysis);
+      router.refresh(); // invalidates /journal page caches
       setIsLoading(false);
     },
     interval: 2_000,
@@ -78,7 +76,7 @@ const Editor = ({ entry }: { entry: any }) => {
           </ul>
 
           <div className="mt-2 flex justify-center">
-            <DeletePopover entryId={entry.id} navigate/>
+            <DeletePopover entryId={entry.id} navigate />
           </div>
         </div>
       </div>
